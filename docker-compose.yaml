@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  prefect-server:
+    image: prefecthq/prefect:3-latest
+    container_name: prefect-server
+    restart: always
+    command: prefect server start --host 0.0.0.0 --port 4200
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./volumes/prefect:/root/.prefect
+    
+  prefect-worker:
+    image: prefecthq/prefect:3-python3.11
+    container_name: prefect-worker
+    restart: always
+    volumes:
+      - ./requirements.txt:/requirements.txt
+      - ./filesharing:/var/lib/filesharing
+    command: >
+      bash -c "pip install --no-cache-dir -r /requirements.txt && 
+      prefect worker start --pool 'default-agent-pool' --type process"
+    environment:
+      - PREFECT_API_URL=http://prefect-server:4200/api
+      - PYTHONPATH=/opt/prefect/deployment_prefect
+    depends_on:
+      - prefect-server
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password --skip-ssl
+    environment:
+      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_DATABASE: dwh_maju_jaya
+      MYSQL_USER: de_admin
+      MYSQL_PASSWORD: majujayajaya123
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./volumes/mysql/init:/docker-entrypoint-initdb.d
