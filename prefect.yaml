@@ -1,0 +1,15 @@
+# Generic metadata about this project
+name: repo-prefect
+prefect-version: 3.4.9.dev3
+
+# build section allows you to manage and build docker images
+build: null
+
+# push section allows you to manage if and how this project is uploaded to remote locations
+push: null
+
+pull:
+  - prefect.deployments.steps.git_clone:
+      id: clone-step
+      repository: "{{ prefect.blocks.github-repository.github-repo.repository_url }}"
+      access_token: "{{ prefect.blocks.github-credentials.github-credential.token }}"

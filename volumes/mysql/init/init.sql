@@ -1,3 +1,6 @@
+-- Grant access
+GRANT ALL PRIVILEGES ON *.* TO 'de_admin' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 
 -- customers_raw
 CREATE TABLE customers_raw (
@@ -48,3 +51,14 @@ INSERT INTO after_sales_raw VALUES
 ('T560-jga1', 'JLK1368KDE', 4, 'INNAVO', '2025-08-04', 'PM', '2025-08-04 10:12:54.003'),
 ('T521-oai8', 'POI1059IIK', 5, 'RAIZA', '2026-09-10', 'GR', '2026-09-10 12:45:02.391');
 
+
+-- customer_address_raw
+CREATE TABLE customer_address_raw (
+    id INT Not null,
+    customer_id INT NOT NULL,
+    address VARCHAR(255),
+    city VARCHAR(100),
+    province VARCHAR(100),
+    created_at DATETIME(6),
+    datefile DATE
+);

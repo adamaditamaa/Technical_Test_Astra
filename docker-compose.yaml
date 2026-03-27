@@ -18,6 +18,7 @@ services:
     volumes:
       - ./requirements.txt:/requirements.txt
       - ./filesharing:/var/lib/filesharing
+      - ./.env:/.env
     command: >
       bash -c "pip install --no-cache-dir -r /requirements.txt && 
       prefect worker start --pool 'default-agent-pool' --type process"
@@ -31,13 +32,14 @@ services:
     image: mysql:8.0
     container_name: mysql_db
     restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password --skip-ssl
+    command: --default-authentication-plugin=mysql_native_password --skip-ssl --secure-file-priv=/var/lib/filesharing
     environment:
-      MYSQL_ROOT_PASSWORD: admin123
-      MYSQL_DATABASE: dwh_maju_jaya
-      MYSQL_USER: de_admin
-      MYSQL_PASSWORD: majujayajaya123
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - ./volumes/mysql/init:/docker-entrypoint-initdb.d
+      - ./filesharing:/var/lib/filesharing
