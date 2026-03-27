@@ -25,7 +25,7 @@ retry_delay = 10 # in seconds
 manual=False
 
 # Datetime Config
-yesterday = ((datetime.now())-timedelta(1)).strftime('%Y%m%d') if manual == False else '20260301'
+yesterday = (((datetime.now())+timedelta(hours=7))-timedelta(days = 1)).strftime('%Y%m%d') if manual == False else '20260301'
 
 # Query Check
 query_check = '''
