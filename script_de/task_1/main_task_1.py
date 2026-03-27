@@ -21,8 +21,8 @@ FILE_BASE_SHARING = f'{FOLDER_BASE_SHARING}/customer_address'
 retry_count = 1
 retry_delay = 10 # in seconds
 
-# Activate if want to test ingest file
-manual=True
+# Activate if you want to test ingest file
+manual=False
 
 # Datetime Config
 yesterday = ((datetime.now())-timedelta(1)).strftime('%Y%m%d') if manual == False else '20260301'
@@ -55,7 +55,7 @@ def check_file(engine,logger):
         f for f in os.listdir(FILE_BASE_SHARING)
         if f.startswith("customer_address") and f.endswith(".csv")
     ]
-
+    logger.info(datetime.now())
     # To check data yesterday already there or not
     with engine.connect() as conn:
         count_check_data = conn.execute(text(query_check.format(yesterday=yesterday))).scalar()
