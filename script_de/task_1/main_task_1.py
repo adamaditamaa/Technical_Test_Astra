@@ -56,6 +56,7 @@ def check_file(engine,logger):
         if f.startswith("customer_address") and f.endswith(".csv")
     ]
     logger.info(datetime.now())
+    logger.info(files)
     # To check data yesterday already there or not
     with engine.connect() as conn:
         count_check_data = conn.execute(text(query_check.format(yesterday=yesterday))).scalar()
@@ -67,7 +68,7 @@ def check_file(engine,logger):
     elif count_check_data>0:
         logger.info('Data Already On Dwh')
         return False
-    elif f'customer_address_{yesterday}' in files:
+    elif f'customer_address_{yesterday}.csv' in files:
         logger.info('File is ready to execute')
         return True
     elif f'customer_address_{yesterday}' not in files:
