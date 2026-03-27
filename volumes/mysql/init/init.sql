@@ -59,6 +59,6 @@ CREATE TABLE customer_address_raw (
     address VARCHAR(255),
     city VARCHAR(100),
     province VARCHAR(100),
-    created_at DATETIME(6),
-    datefile DATE
+    created_at VARCHAR(255),
+    datefile VARCHAR(255)
 );
