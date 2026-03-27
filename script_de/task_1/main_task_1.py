@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 load_dotenv()
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_HOST = os.getenv("DB_HOST")
+DB_HOST = os.getenv("DB_HOST_FOR_PREFECT")
 DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 FOLDER_BASE_SHARING = os.getenv("FILE_BASE_SHARING")
