@@ -12,7 +12,7 @@ clean-targets:    # directories to be removed by `dbt clean`
 
 models:
   modeling:
-    analytics:
+    dwh_maju_jaya:
       +materialized: incremental
 
 

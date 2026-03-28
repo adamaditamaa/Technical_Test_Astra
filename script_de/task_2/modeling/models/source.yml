@@ -1,7 +1,7 @@
 sources:
   - name: analytics_source
     database: dwh_maju_jaya
-    schema: public
+    schema: dwh_maju_jaya
     tables:
       - name: sales_raw
 
