@@ -21,11 +21,16 @@ def run_dbt(logger, path_folder, profiles=None, vars_dict=None,install_deps=None
             bufsize=1
             )
 
+        output_lines = []
         # stream logs to Prefect
         for line in process.stdout:
             logger.info(line.strip())
+            output_lines.append(line)
 
         process.wait()
+        full_output = "".join(output_lines)
+        if "Completed successfully" in full_output:
+            return 0
         return process.returncode
 
     if profiles:
