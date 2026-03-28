@@ -8,7 +8,7 @@
 
 with main_data as (
 	select *, rank() over(partition by vin order by updated_at desc) as rnk
-	from sales_raw sr 
+	from dwh_maju_jaya.sales_raw sr 
 )
 select 
 	MD5(CONCAT(vin, created_at)) as id,

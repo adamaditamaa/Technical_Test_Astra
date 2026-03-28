@@ -22,9 +22,9 @@ select
     cr.created_at,
     cr.updated_at
 from 
-	(select *, rank() over(partition by id order by updated_at desc) as rnk from customers_raw cr) cr 
+	(select *, rank() over(partition by id order by updated_at desc) as rnk from dwh_maju_jaya.customers_raw cr) cr 
 left join 
-	(select *, rank() over(partition by id order by datefile desc) as rnk from customer_address_raw car) car
+	(select *, rank() over(partition by id order by datefile desc) as rnk from dwh_maju_jaya.customer_address_raw car) car
 		on car.customer_id = cr.id 
 			and car.rnk = 1
 where cr.rnk = 1
