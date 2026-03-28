@@ -1,0 +1,8 @@
+sources:
+  - name: analytics_source
+    database: dwh_maju_jaya
+    schema: public
+    tables:
+      - name: sales_raw
+
+version: 2
