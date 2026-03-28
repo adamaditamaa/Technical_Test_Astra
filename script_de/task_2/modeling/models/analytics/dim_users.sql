@@ -1,7 +1,7 @@
 {{
     config(
         materialized = 'incremental',
-        alias='fact_sales',
+        alias='dim_users',
 		unique_key='id',
     )
 }}
