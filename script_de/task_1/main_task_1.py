@@ -22,7 +22,7 @@ retry_count = 1
 retry_delay = 10 # in seconds
 
 # Activate if you want to test ingest file
-manual=True
+manual=False
 
 # Datetime Config
 yesterday = (((datetime.now())+timedelta(hours=7))-timedelta(days = 1)).strftime('%Y%m%d') if manual == False else '20260301'

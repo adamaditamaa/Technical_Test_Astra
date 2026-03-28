@@ -21,9 +21,7 @@ INSERT INTO customers_raw VALUES
 (6, 'PT Black Bird', NULL, '2025-03-04 12:52:16.122', '2025-03-04 12:52:16.122');
 
 
--- =========================
 -- sales_raw
--- =========================
 CREATE TABLE sales_raw (
     vin VARCHAR(50),
     customer_id INT,
@@ -42,9 +40,7 @@ INSERT INTO sales_raw VALUES
 ('JLK1962KOP', 6, 'VELOS', '2025-08-02', 390000000, '2025-08-02 15:21:04.201', '2025-08-02 15:21:04.201');
 
 
--- =========================
 -- after_sales_raw
--- =========================
 CREATE TABLE after_sales_raw (
     service_ticket VARCHAR(50),
     vin VARCHAR(50),
